@@ -1,16 +1,89 @@
-# React + Vite
+# Currency Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal, real-time currency converter built with React 19 and Tailwind CSS 4. Exchange rates are pulled from a free public API and the UI updates instantly as you type.
 
-Currently, two official plugins are available:
+![Currency Converter Screenshot](docs/screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Live exchange rates** sourced from [fawazahmed0/currency-api](https://github.com/fawazahmed0/currency-api)
+- **150+ currencies** available in the dropdown
+- **Instant conversion** as you type — no submit button needed
+- **Swap** source and target currencies with one click
+- **Responsive** and centered layout that works on desktop and mobile
+- **Accessible** — proper labels, ARIA attributes, and keyboard support
+- **Error & loading states** surfaced in the UI
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+| Layer      | Technology               |
+| ---------- | ------------------------ |
+| Framework  | React 19                 |
+| Build Tool | Vite 7                   |
+| Styling    | Tailwind CSS 4           |
+| Linting    | ESLint 9 + React plugins |
+| Deployment | Vercel                   |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** >= 18
+- **npm** >= 9 (or any compatible package manager)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/converter.git
+cd converter
+
+# Install dependencies
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Opens the app at `http://localhost:5173` with hot-module replacement.
+
+### Production Build
+
+```bash
+npm run build
+npm run preview   # preview the production build locally
+```
+
+### Linting
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── assets/             # Static assets (SVG icons)
+├── components/
+│   ├── ButtonComp.jsx  # Reusable gradient button
+│   └── InputBox.jsx    # Currency input + dropdown row
+├── hooks/
+│   └── useCurrencyInfo.js  # Custom hook — fetches exchange rates
+├── App.jsx             # Root component — converter logic & layout
+├── main.jsx            # React DOM entry point
+└── index.css           # Tailwind CSS import
+```
+
+## How It Works
+
+1. `useCurrencyInfo` fetches rates for the selected **source currency** using `AbortController` to cancel stale requests.
+2. The converted amount is derived via `useMemo` — no extra state or effects needed.
+3. Swapping currencies flips both codes and sets the input to the previously converted value.
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
