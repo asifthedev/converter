@@ -2,7 +2,9 @@
 
 A minimal, real-time currency converter built with React 19 and Tailwind CSS 4. Exchange rates are pulled from a free public API and the UI updates instantly as you type.
 
-![Currency Converter Screenshot](docs/screenshot.png)
+<p align="center">
+  <img src="docs/screenshot.png" alt="Currency Converter Screenshot" style="border-radius: 12px;" />
+</p>
 
 ## Features
 
