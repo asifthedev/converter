@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 /** Base URL for the free currency exchange rate API. */
+
 const BASE_URL =
   "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies";
 
@@ -14,6 +15,10 @@ const BASE_URL =
  *   - error: An error message string if the request failed, otherwise null.
  */
 function useCurrencyInfo(currency) {
+  if (import.meta.env.DEV && !currency) {
+    throw new Error("useCurrencyInfo: currency argument is required");
+  }
+
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
